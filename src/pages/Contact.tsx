@@ -1,15 +1,6 @@
 import { useState } from "react";
 import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
 import { toast } from "sonner";
-import { motion } from "framer-motion";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1, y: 0,
-    transition: { delay: i * 0.1, duration: 0.6 },
-  }),
-};
 
 const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -24,25 +15,19 @@ const Contact = () => {
     <div className="min-h-screen pt-20">
       {/* Header */}
       <section className="py-20 gradient-dark text-center">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-          <h1 className="font-display text-5xl md:text-7xl font-bold text-cream mb-4">Get in Touch</h1>
-          <p className="font-body text-lg text-cream/70">We'd love to hear from you</p>
-        </motion.div>
+        <h1 className="font-display text-5xl md:text-6xl font-bold text-cream mb-4">Get in Touch</h1>
+        <p className="font-body text-lg text-cream/80">We'd love to hear from you</p>
       </section>
 
       <section className="py-20 bg-background">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Form */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              <motion.h2 variants={fadeUp} custom={0} className="font-display text-3xl font-bold text-foreground mb-8">
-                Send Us a <span className="text-gradient-warm">Message</span>
-              </motion.h2>
-              <motion.form variants={fadeUp} custom={1} onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <h2 className="font-display text-3xl font-bold text-foreground mb-8">
+                Send Us a <span className="text-primary">Message</span>
+              </h2>
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label className="font-body text-sm font-medium text-foreground mb-2 block">Name</label>
                   <input
@@ -78,23 +63,18 @@ const Contact = () => {
                 </div>
                 <button
                   type="submit"
-                  className="inline-flex items-center gap-2 gradient-warm text-cream font-body font-semibold px-8 py-3.5 rounded-lg hover:opacity-90 transition-all duration-300 shadow-warm hover:shadow-warm-lg"
+                  className="inline-flex items-center gap-2 gradient-warm text-cream font-body font-semibold px-8 py-3.5 rounded-lg hover:opacity-90 transition-all duration-300 shadow-warm"
                 >
                   Send Message <Send className="h-4 w-4" />
                 </button>
-              </motion.form>
-            </motion.div>
+              </form>
+            </div>
 
             {/* Info */}
-            <motion.div
-              className="space-y-10"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              <motion.div variants={fadeUp} custom={0}>
+            <div className="space-y-10">
+              <div>
                 <h2 className="font-display text-3xl font-bold text-foreground mb-8">
-                  Visit <span className="text-gradient-warm">Us</span>
+                  Visit <span className="text-primary">Us</span>
                 </h2>
                 <div className="space-y-5">
                   {[
@@ -113,9 +93,9 @@ const Contact = () => {
                     </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div variants={fadeUp} custom={1}>
+              <div>
                 <div className="flex items-start gap-4 mb-4">
                   <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
                     <Clock className="h-5 w-5 text-primary" />
@@ -129,10 +109,10 @@ const Contact = () => {
                   <p>Saturday: 7:00 AM - 9:00 PM</p>
                   <p>Sunday: 8:00 AM - 6:00 PM</p>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Map */}
-              <motion.div variants={fadeUp} custom={2} className="rounded-xl overflow-hidden shadow-warm border border-border/50">
+              <div className="rounded-xl overflow-hidden shadow-warm border border-border/50">
                 <iframe
                   title="Amber & Bean location"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.8!2d80.2337!3d13.0382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDAyJzE3LjUiTiA4MMKwMTQnMDEuMyJF!5e0!3m2!1sen!2sin!4v1234567890"
@@ -143,8 +123,8 @@ const Contact = () => {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                 />
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

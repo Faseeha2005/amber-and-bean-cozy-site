@@ -1,7 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Coffee, Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { to: "/", label: "Home" },
@@ -12,28 +11,15 @@ const navLinks = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-coffee/95 backdrop-blur-md shadow-warm-lg border-b border-warm-amber/20"
-          : "bg-coffee/80 backdrop-blur-sm"
-      }`}
-    >
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border/50">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 group">
-          <Coffee className="h-7 w-7 text-warm-amber transition-transform duration-300 group-hover:rotate-12" />
-          <span className="font-display text-xl font-bold text-cream">
-            Amber <span className="text-warm-amber">&</span> Bean
+          <Coffee className="h-7 w-7 text-primary transition-transform duration-300 group-hover:rotate-12" />
+          <span className="font-display text-xl font-bold text-foreground">
+            Amber <span className="text-primary">&</span> Bean
           </span>
         </Link>
 
@@ -43,8 +29,8 @@ const Navbar = () => {
             <Link
               key={link.to}
               to={link.to}
-              className={`font-body text-sm font-medium tracking-wide transition-colors duration-200 hover:text-warm-amber ${
-                location.pathname === link.to ? "text-warm-amber" : "text-cream/70"
+              className={`font-body text-sm font-medium tracking-wide transition-colors duration-200 hover:text-primary ${
+                location.pathname === link.to ? "text-primary" : "text-muted-foreground"
               }`}
             >
               {link.label}
@@ -54,7 +40,7 @@ const Navbar = () => {
 
         {/* Mobile toggle */}
         <button
-          className="md:hidden text-cream"
+          className="md:hidden text-foreground"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >
@@ -63,31 +49,24 @@ const Navbar = () => {
       </div>
 
       {/* Mobile menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-coffee border-b border-warm-amber/20 overflow-hidden"
-          >
-            <div className="container mx-auto px-6 py-4 flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  onClick={() => setIsOpen(false)}
-                  className={`font-body text-base font-medium transition-colors duration-200 hover:text-warm-amber ${
-                    location.pathname === link.to ? "text-warm-amber" : "text-cream/70"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {isOpen && (
+        <div className="md:hidden bg-background border-b border-border animate-fade-in">
+          <div className="container mx-auto px-6 py-4 flex flex-col gap-4">
+            {navLinks.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                onClick={() => setIsOpen(false)}
+                className={`font-body text-base font-medium transition-colors duration-200 hover:text-primary ${
+                  location.pathname === link.to ? "text-primary" : "text-muted-foreground"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
     </nav>
   );
 };

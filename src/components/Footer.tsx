@@ -1,18 +1,11 @@
 import { Link } from "react-router-dom";
 import { Coffee, Instagram, Facebook, Twitter, MapPin, Phone, Mail } from "lucide-react";
-import { motion } from "framer-motion";
 
 const Footer = () => {
   return (
     <footer className="bg-coffee text-cream">
       <div className="container mx-auto px-6 py-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="grid grid-cols-1 md:grid-cols-4 gap-10"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
@@ -75,16 +68,18 @@ const Footer = () => {
               <p>Sunday: 8:00 AM - 6:00 PM</p>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         <div className="mt-12 pt-8 border-t border-cream/10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-cream/50">© 2026 Amber & Bean. All rights reserved.</p>
+          <p className="text-sm text-cream/50">
+            © 2026 Amber & Bean. All rights reserved.
+          </p>
           <div className="flex items-center gap-4">
             {[Instagram, Facebook, Twitter].map((Icon, i) => (
               <a
                 key={i}
                 href="#"
-                className="text-cream/50 hover:text-warm-amber transition-all duration-200 hover:scale-110"
+                className="text-cream/50 hover:text-warm-amber transition-colors duration-200"
                 aria-label="Social media"
               >
                 <Icon className="h-5 w-5" />

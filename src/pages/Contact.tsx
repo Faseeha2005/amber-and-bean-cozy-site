@@ -78,7 +78,7 @@ const Contact = () => {
                 </h2>
                 <div className="space-y-5">
                   {[
-                    { icon: MapPin, label: "Address", value: "123 Coffee Lane, Portland, OR 97201" },
+                    { icon: MapPin, label: "Address", value: "12 Northcar Street, T. Nagar, Chennai 600017" },
                     { icon: Phone, label: "Phone", value: "(503) 555-0127" },
                     { icon: Mail, label: "Email", value: "hello@amberandbean.com" },
                   ].map(({ icon: Icon, label, value }) => (

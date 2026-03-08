@@ -4,10 +4,10 @@ import heroCoffee from "@/assets/hero-coffee.jpg";
 import cafeInterior from "@/assets/cafe-interior.jpg";
 
 const featuredDrinks = [
-  { name: "Golden Amber Latte", description: "Turmeric-infused latte with oat milk and a touch of honey", price: "$5.50" },
-  { name: "Classic Espresso", description: "Rich, bold double shot pulled from our signature blend", price: "$3.50" },
-  { name: "Iced Vanilla Cold Brew", description: "24-hour steeped cold brew with house-made vanilla syrup", price: "$5.00" },
-  { name: "Mocha Cappuccino", description: "Velvety cappuccino with Belgian dark chocolate", price: "$5.75" },
+  { name: "Golden Amber Latte", description: "Turmeric-infused latte with oat milk and a touch of honey", price: "₹449" },
+  { name: "Classic Espresso", description: "Rich, bold double shot pulled from our signature blend", price: "₹279" },
+  { name: "Iced Vanilla Cold Brew", description: "24-hour steeped cold brew with house-made vanilla syrup", price: "₹399" },
+  { name: "Mocha Cappuccino", description: "Velvety cappuccino with Belgian dark chocolate", price: "₹469" },
 ];
 
 const testimonials = [
@@ -22,24 +22,32 @@ const Index = () => {
       {/* Hero */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroCoffee} alt="Amber & Bean coffee" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-coffee/60" />
+          <img src={heroCoffee} alt="Amber & Bean coffee" className="w-full h-full object-cover scale-105" />
+          <div className="absolute inset-0 bg-gradient-to-b from-coffee/70 via-coffee/50 to-coffee/80" />
         </div>
-        <div className="relative z-10 text-center px-6 max-w-3xl">
-          <h1 className="font-display text-5xl md:text-7xl font-bold text-cream mb-6 animate-fade-in">
-            Amber & Bean
+        <div className="relative z-10 text-center px-6 max-w-4xl">
+          <div className="inline-block mb-6 animate-fade-in">
+            <span className="font-body text-sm uppercase tracking-[0.3em] text-warm-amber/90 border border-warm-amber/30 px-5 py-2 rounded-full backdrop-blur-sm">
+              Est. 2018 · Chennai
+            </span>
+          </div>
+          <h1 className="font-display text-6xl md:text-8xl font-bold text-cream mb-6 animate-fade-in leading-[0.95]">
+            Amber <span className="italic text-warm-amber">&</span> Bean
           </h1>
-          <p className="font-body text-xl md:text-2xl text-cream/90 mb-10 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+          <div className="w-24 h-[2px] bg-warm-amber mx-auto mb-6 animate-fade-in" style={{ animationDelay: "0.15s" }} />
+          <p className="font-display text-xl md:text-2xl text-cream/85 mb-12 animate-fade-in italic font-light tracking-wide" style={{ animationDelay: "0.2s" }}>
             Where Every Cup Feels Like Home
           </p>
           <Link
             to="/menu"
-            className="inline-flex items-center gap-2 gradient-warm text-cream font-body font-semibold px-8 py-4 rounded-lg hover:opacity-90 transition-all duration-300 shadow-warm-lg animate-fade-in"
+            className="inline-flex items-center gap-3 bg-warm-amber/90 backdrop-blur-sm text-coffee font-body font-semibold px-10 py-4 rounded-full hover:bg-warm-amber transition-all duration-300 shadow-warm-lg animate-fade-in tracking-wide uppercase text-sm"
             style={{ animationDelay: "0.4s" }}
           >
-            View Our Menu <ArrowRight className="h-5 w-5" />
+            View Our Menu <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
+        {/* Decorative bottom fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
       </section>
 
       {/* Intro */}

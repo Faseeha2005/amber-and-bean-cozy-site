@@ -37,11 +37,11 @@ const About = () => {
               </h2>
               <p className="font-body text-muted-foreground leading-relaxed text-lg">
                 Amber & Bean was born in 2018 when two lifelong friends — a former roaster and a pastry chef — 
-                decided Portland needed a coffee shop that felt like your best friend's kitchen. A place where 
+                decided Chennai needed a coffee shop that felt like your best friend's kitchen. A place where 
                 the aroma of freshly ground beans mingles with the warmth of genuine connection.
               </p>
               <p className="font-body text-muted-foreground leading-relaxed text-lg">
-                What started as a tiny corner shop has grown into a beloved neighborhood staple, 
+                What started as a tiny corner shop in T. Nagar has grown into a beloved neighborhood staple, 
                 but our mission has never changed: serve exceptional coffee in a space that makes 
                 everyone feel at home.
               </p>

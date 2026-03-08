@@ -115,7 +115,7 @@ const Contact = () => {
               <div className="rounded-xl overflow-hidden shadow-warm border border-border/50">
                 <iframe
                   title="Amber & Bean location"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2795.5!2d-122.6765!3d45.5231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDXCsDMxJzIzLjIiTiAxMjLCsDQwJzM1LjQiVw!5e0!3m2!1sen!2sus!4v1234567890"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.8!2d80.2337!3d13.0382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDAyJzE3LjUiTiA4MMKwMTQnMDEuMyJF!5e0!3m2!1sen!2sin!4v1234567890"
                   width="100%"
                   height="250"
                   style={{ border: 0 }}

@@ -4,10 +4,10 @@ import heroCoffee from "@/assets/hero-coffee.jpg";
 import cafeInterior from "@/assets/cafe-interior.jpg";
 
 const featuredDrinks = [
-  { name: "Golden Amber Latte", description: "Turmeric-infused latte with oat milk and a touch of honey", price: "$5.50" },
-  { name: "Classic Espresso", description: "Rich, bold double shot pulled from our signature blend", price: "$3.50" },
-  { name: "Iced Vanilla Cold Brew", description: "24-hour steeped cold brew with house-made vanilla syrup", price: "$5.00" },
-  { name: "Mocha Cappuccino", description: "Velvety cappuccino with Belgian dark chocolate", price: "$5.75" },
+  { name: "Golden Amber Latte", description: "Turmeric-infused latte with oat milk and a touch of honey", price: "₹449" },
+  { name: "Classic Espresso", description: "Rich, bold double shot pulled from our signature blend", price: "₹279" },
+  { name: "Iced Vanilla Cold Brew", description: "24-hour steeped cold brew with house-made vanilla syrup", price: "₹399" },
+  { name: "Mocha Cappuccino", description: "Velvety cappuccino with Belgian dark chocolate", price: "₹469" },
 ];
 
 const testimonials = [

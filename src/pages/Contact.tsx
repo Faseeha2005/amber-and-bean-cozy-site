@@ -161,6 +161,44 @@ const Contact = () => {
                     referrerPolicy="no-referrer-when-downgrade"
                   />
                 </div>
+
+                {/* Subscribe */}
+                <div className="rounded-xl bg-card border border-border/50 p-6 shadow-warm">
+                  <span className="font-body text-xs uppercase tracking-[0.3em] text-primary">Stay Updated</span>
+                  <h3 className="font-display text-xl font-bold text-foreground mt-1 mb-2">
+                    Seasonal <span className="text-gradient-warm">Offers</span>
+                  </h3>
+                  <p className="font-body text-sm text-muted-foreground mb-4">
+                    Subscribe to receive exclusive seasonal drinks, limited-time deals, and event invites.
+                  </p>
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      const input = e.currentTarget.elements.namedItem("subscribe-email") as HTMLInputElement;
+                      if (input?.value) {
+                        toast.success("Subscribed! You'll hear from us soon ☕");
+                        input.value = "";
+                      }
+                    }}
+                    className="flex gap-2"
+                  >
+                    <input
+                      name="subscribe-email"
+                      type="email"
+                      required
+                      placeholder="your@email.com"
+                      className="flex-1 px-4 py-2.5 rounded-lg bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-body text-sm text-foreground"
+                    />
+                    <motion.button
+                      type="submit"
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                      className="gradient-warm text-cream font-body font-semibold px-5 py-2.5 rounded-lg hover:opacity-90 transition-all duration-300 shadow-warm text-sm whitespace-nowrap"
+                    >
+                      Subscribe
+                    </motion.button>
+                  </form>
+                </div>
               </div>
             </ScrollReveal>
           </div>

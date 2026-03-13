@@ -171,33 +171,29 @@ const Contact = () => {
                   <p className="font-body text-sm text-muted-foreground mb-4">
                     Subscribe to receive exclusive seasonal drinks, limited-time deals, and event invites.
                   </p>
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      const input = e.currentTarget.elements.namedItem("subscribe-email") as HTMLInputElement;
-                      if (input?.value) {
-                        toast.success("Subscribed! You'll hear from us soon ☕");
-                        input.value = "";
-                      }
-                    }}
-                    className="flex gap-2"
-                  >
-                    <input
-                      name="subscribe-email"
-                      type="email"
-                      required
-                      placeholder="your@email.com"
-                      className="flex-1 px-4 py-2.5 rounded-lg bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-body text-sm text-foreground"
-                    />
-                    <motion.button
-                      type="submit"
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.97 }}
-                      className="gradient-warm text-cream font-body font-semibold px-5 py-2.5 rounded-lg hover:opacity-90 transition-all duration-300 shadow-warm text-sm whitespace-nowrap"
-                    >
-                      Subscribe
-                    </motion.button>
-                  </form>
+                 <form
+  action="https://app.us15.list-manage.com/subscribe/post?u=555278ece73411e565c9a86a2&id=2b2215bd68&f_id=002fa1e0f0"
+  method="post"
+  target="_blank"
+  className="flex gap-2"
+>
+  <input
+    name="EMAIL"
+    type="email"
+    required
+    placeholder="your@email.com"
+    className="flex-1 px-4 py-2.5 rounded-lg bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-body text-sm text-foreground"
+  />
+
+  <motion.button
+    type="submit"
+    whileHover={{ scale: 1.03 }}
+    whileTap={{ scale: 0.97 }}
+    className="gradient-warm text-cream font-body font-semibold px-5 py-2.5 rounded-lg hover:opacity-90 transition-all duration-300 shadow-warm text-sm whitespace-nowrap"
+  >
+    Subscribe
+  </motion.button>
+</form>
                 </div>
               </div>
             </ScrollReveal>

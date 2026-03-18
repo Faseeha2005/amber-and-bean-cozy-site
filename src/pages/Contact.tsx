@@ -16,6 +16,7 @@ const Contact = () => {
   const [sending, setSending] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
+    console.log("FORM SUBMIT TRIGGERED");
     e.preventDefault();
     if (sending) return;
 

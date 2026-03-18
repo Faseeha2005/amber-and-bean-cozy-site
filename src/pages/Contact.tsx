@@ -9,7 +9,7 @@ const SERVICE_ID = "service_29pbfnp";
 const PUBLIC_KEY = "zep98rF481OzKa1Ka";
 const CONTACT_TEMPLATE = "template_sqw8u2v";
 const AUTO_REPLY_TEMPLATE = "template_59k7q4x";
-const BUSINESS_EMAIL = "hello@amberandbean.com";
+const BUSINESS_EMAIL = "amberandbean17@gmail.com";
 
 const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -34,30 +34,17 @@ const Contact = () => {
 
     try {
       const contactTemplateParams = {
-        to_name: "Amber & Bean Team",
-        to_email: BUSINESS_EMAIL,
-        from_name: normalizedForm.name,
-        from_email: normalizedForm.email,
-        name: normalizedForm.name,
-        email: normalizedForm.email,
-        message: normalizedForm.message,
-        reply_to: normalizedForm.email,
-        user_name: normalizedForm.name,
-        user_email: normalizedForm.email,
-      };
+  name: normalizedForm.name,
+  email: normalizedForm.email,
+  message: normalizedForm.message,
+  reply_to: normalizedForm.email,
+};
 
-      const autoReplyTemplateParams = {
-        to_name: normalizedForm.name,
-        to_email: normalizedForm.email,
-        from_name: "Amber & Bean",
-        from_email: BUSINESS_EMAIL,
-        name: normalizedForm.name,
-        email: normalizedForm.email,
-        message: normalizedForm.message,
-        reply_to: BUSINESS_EMAIL,
-        user_name: normalizedForm.name,
-        user_email: normalizedForm.email,
-      };
+const autoReplyTemplateParams = {
+  name: normalizedForm.name,
+  email: normalizedForm.email,
+  message: normalizedForm.message,
+};
 
       await emailjs.send(SERVICE_ID, CONTACT_TEMPLATE, contactTemplateParams, PUBLIC_KEY);
 

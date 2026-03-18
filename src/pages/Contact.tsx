@@ -117,11 +117,16 @@ const Contact = () => {
                   </div>
                   <motion.button
                     type="submit"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="inline-flex items-center gap-2 gradient-warm text-cream font-body font-semibold px-8 py-3.5 rounded-lg hover:opacity-90 transition-all duration-300 shadow-warm"
+                    disabled={sending}
+                    whileHover={{ scale: sending ? 1 : 1.02 }}
+                    whileTap={{ scale: sending ? 1 : 0.98 }}
+                    className="inline-flex items-center gap-2 gradient-warm text-cream font-body font-semibold px-8 py-3.5 rounded-lg hover:opacity-90 transition-all duration-300 shadow-warm disabled:opacity-60"
                   >
-                    Send Message <Send className="h-4 w-4" />
+                    {sending ? (
+                      <>Sending... <Loader2 className="h-4 w-4 animate-spin" /></>
+                    ) : (
+                      <>Send Message <Send className="h-4 w-4" /></>
+                    )}
                   </motion.button>
                 </form>
               </div>

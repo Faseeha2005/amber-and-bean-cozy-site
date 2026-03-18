@@ -1,16 +1,38 @@
 import { useState } from "react";
-import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Send, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
+import emailjs from "@emailjs/browser";
 import ScrollReveal from "@/components/ScrollReveal";
+
+const SERVICE_ID = "service_29pbfnp";
+const PUBLIC_KEY = "zep98rF481OzKa1Ka";
+const CONTACT_TEMPLATE = "template_sqw8u2v";
+const AUTO_REPLY_TEMPLATE = "template_59k7q4x";
 
 const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [sending, setSending] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Message sent! We'll get back to you soon.");
-    setForm({ name: "", email: "", message: "" });
+    setSending(true);
+    try {
+      const templateParams = {
+        from_name: form.name,
+        from_email: form.email,
+        message: form.message,
+      };
+      await emailjs.send(SERVICE_ID, CONTACT_TEMPLATE, templateParams, PUBLIC_KEY);
+      await emailjs.send(SERVICE_ID, AUTO_REPLY_TEMPLATE, templateParams, PUBLIC_KEY);
+      toast.success("Message sent! We'll get back to you soon.");
+      setForm({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error("EmailJS error:", error);
+      toast.error("Failed to send message. Please try again.");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -95,11 +117,16 @@ const Contact = () => {
                   </div>
                   <motion.button
                     type="submit"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="inline-flex items-center gap-2 gradient-warm text-cream font-body font-semibold px-8 py-3.5 rounded-lg hover:opacity-90 transition-all duration-300 shadow-warm"
+                    disabled={sending}
+                    whileHover={{ scale: sending ? 1 : 1.02 }}
+                    whileTap={{ scale: sending ? 1 : 0.98 }}
+                    className="inline-flex items-center gap-2 gradient-warm text-cream font-body font-semibold px-8 py-3.5 rounded-lg hover:opacity-90 transition-all duration-300 shadow-warm disabled:opacity-60"
                   >
-                    Send Message <Send className="h-4 w-4" />
+                    {sending ? (
+                      <>Sending... <Loader2 className="h-4 w-4 animate-spin" /></>
+                    ) : (
+                      <>Send Message <Send className="h-4 w-4" /></>
+                    )}
                   </motion.button>
                 </form>
               </div>

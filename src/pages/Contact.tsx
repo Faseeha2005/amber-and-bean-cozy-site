@@ -21,7 +21,12 @@ const Contact = () => {
       const templateParams = {
         from_name: form.name,
         from_email: form.email,
+        to_email: form.email,
+        to_name: form.name,
+        email: form.email,
+        name: form.name,
         message: form.message,
+        reply_to: form.email,
       };
       await emailjs.send(SERVICE_ID, CONTACT_TEMPLATE, templateParams, PUBLIC_KEY);
       await emailjs.send(SERVICE_ID, AUTO_REPLY_TEMPLATE, templateParams, PUBLIC_KEY);

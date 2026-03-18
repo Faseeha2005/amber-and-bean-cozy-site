@@ -9,6 +9,7 @@ const SERVICE_ID = "service_29pbfnp";
 const PUBLIC_KEY = "zep98rF481OzKa1Ka";
 const CONTACT_TEMPLATE = "template_sqw8u2v";
 const AUTO_REPLY_TEMPLATE = "template_59k7q4x";
+const BUSINESS_EMAIL = "hello@amberandbean.com";
 
 const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -16,24 +17,67 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (sending) return;
+
+    const normalizedForm = {
+      name: form.name.trim(),
+      email: form.email.trim(),
+      message: form.message.trim(),
+    };
+
+    if (!normalizedForm.name || !normalizedForm.email || !normalizedForm.message) {
+      toast.error("Please fill in all fields before sending.");
+      return;
+    }
+
     setSending(true);
+
     try {
-      const templateParams = {
-        from_name: form.name,
-        from_email: form.email,
-        to_email: form.email,
-        to_name: form.name,
-        email: form.email,
-        name: form.name,
-        message: form.message,
-        reply_to: form.email,
+      const contactTemplateParams = {
+        to_name: "Amber & Bean Team",
+        to_email: BUSINESS_EMAIL,
+        from_name: normalizedForm.name,
+        from_email: normalizedForm.email,
+        name: normalizedForm.name,
+        email: normalizedForm.email,
+        message: normalizedForm.message,
+        reply_to: normalizedForm.email,
+        user_name: normalizedForm.name,
+        user_email: normalizedForm.email,
       };
-      await emailjs.send(SERVICE_ID, CONTACT_TEMPLATE, templateParams, PUBLIC_KEY);
-      await emailjs.send(SERVICE_ID, AUTO_REPLY_TEMPLATE, templateParams, PUBLIC_KEY);
-      toast.success("Message sent! We'll get back to you soon.");
+
+      const autoReplyTemplateParams = {
+        to_name: normalizedForm.name,
+        to_email: normalizedForm.email,
+        from_name: "Amber & Bean",
+        from_email: BUSINESS_EMAIL,
+        name: normalizedForm.name,
+        email: normalizedForm.email,
+        message: normalizedForm.message,
+        reply_to: BUSINESS_EMAIL,
+        user_name: normalizedForm.name,
+        user_email: normalizedForm.email,
+      };
+
+      await emailjs.send(SERVICE_ID, CONTACT_TEMPLATE, contactTemplateParams, PUBLIC_KEY);
+
+      const autoReplyDelivered = await emailjs
+        .send(SERVICE_ID, AUTO_REPLY_TEMPLATE, autoReplyTemplateParams, PUBLIC_KEY)
+        .then(() => true)
+        .catch((autoReplyError) => {
+          console.warn("EmailJS auto-reply error:", autoReplyError);
+          return false;
+        });
+
+      if (autoReplyDelivered) {
+        toast.success("Message sent! We'll get back to you soon.");
+      } else {
+        toast.success("Message sent! We received it, but auto-reply could not be delivered.");
+      }
+
       setForm({ name: "", email: "", message: "" });
     } catch (error) {
-      console.error("EmailJS error:", error);
+      console.error("EmailJS contact template error:", error);
       toast.error("Failed to send message. Please try again.");
     } finally {
       setSending(false);
